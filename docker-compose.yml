@@ -16,6 +16,12 @@ services:
        MYSQL_PASSWORD: 1234
     volumes:
       - ../volumes/database/mariadb:/var/lib/mysql
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=1234 --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
+
   adminer:
     image: adminer
     container_name: adminer_container
