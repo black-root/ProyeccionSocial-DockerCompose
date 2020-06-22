@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+
+  db:
+    build: ./mariadb/.
+    image: mariadb:proy-social
+    container_name: mariadb_container
+    restart: always
+    ports:
+      - 3300:3306
+    environment:
+       MYSQL_DATABASE: proyeccionsocial_db
+       MYSQL_HOST: localhost
+       MYSQL_ROOT_PASSWORD: 1234
+       MYSQL_USER: user
+       MYSQL_PASSWORD: 1234
+    volumes:
+      - ../volumes/database/mariadb:/var/lib/mysql
+  adminer:
+    image: adminer
+    container_name: adminer_container
+    restart: always
+    ports:
+      - 8000:8080
+
